@@ -8,10 +8,14 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "CustomTableViewCell.h"
+#import "Todo.h"
 
 @interface MasterViewController ()
 
 @property NSMutableArray *objects;
+@property NSMutableArray *todos;
+
 @end
 
 @implementation MasterViewController
@@ -19,30 +23,44 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
+		self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-	self.navigationItem.rightBarButtonItem = addButton;
+//	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(prepareForSegue:sender:)];
+//	self.navigationItem.rightBarButtonItem = addButton;
+	
+	self.todos = [NSMutableArray new];
+	
+	Todo *new = [[Todo alloc]initWithTitle:@"thing1" andTodoDescription:@"new thing description 1" andPriority:1];
+	Todo *new2 = [[Todo alloc]initWithTitle:@"thing2" andTodoDescription:@"new thing description 2" andPriority:2];
+	Todo *new3 = [[Todo alloc]initWithTitle:@"thing3" andTodoDescription:@"new thing description 3" andPriority:3];
+	Todo *new4 = [[Todo alloc]initWithTitle:@"thing4" andTodoDescription:@"new thing description 4" andPriority:1];
+	
+	new. completed = YES;
+	new2.completed = YES;
+	new3.completed = YES;
+	
+	[self.todos addObject:new];
+	[self.todos addObject:new2];
+	[self.todos addObject:new3];
+	[self.todos addObject:new4];
+	
+	
 }
 
-
-- (void)viewWillAppear:(BOOL)animated {
+-(void) viewWillAppear:(BOOL)animated{
+	[self.tableView reloadData];
 }
 
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
-}
-
-
-- (void)insertNewObject:(id)sender {
-	if (!self.objects) {
-	    self.objects = [[NSMutableArray alloc] init];
+-(void) makeNewTodo:(Todo *)newTodo{
+	if (!self.todos) {
+	    self.todos = [[NSMutableArray alloc] init];
 	}
-	[self.objects insertObject:[NSDate date] atIndex:0];
-	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+	
+	[self.todos addObject:newTodo];
+//	[self.todos addObject:];
+//	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
 }
 
 
@@ -51,9 +69,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([[segue identifier] isEqualToString:@"showDetail"]) {
 	    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-	    NSDate *object = self.objects[indexPath.row];
+	    Todo *todoItem = self.todos[indexPath.row];
 	    DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
-	    [controller setDetailItem:object];
+	    [controller setDetailItem:todoItem];
+		
+	}
+	if ([[segue identifier] isEqualToString:@"addNewTodo"]) {
+		CreateTodoViewController *newVC = (CreateTodoViewController *) segue.destinationViewController;
+		newVC.delegate = self;
 	}
 }
 
@@ -64,35 +87,53 @@
 	return 1;
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.objects.count;
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+	return 70;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return self.todos.count;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-	NSDate *object = self.objects[indexPath.row];
-	cell.textLabel.text = [object description];
+	CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
+	Todo *newTodo = self.todos[indexPath.row];
+	
+	[cell configureCell: newTodo];
+	
 	return cell;
 }
 
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-	// Return NO if you do not want the specified item to be editable.
 	return YES;
 }
 
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (editingStyle == UITableViewCellEditingStyleDelete) {
-	    [self.objects removeObjectAtIndex:indexPath.row];
-	    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	} else if (editingStyle == UITableViewCellEditingStyleInsert) {
-	    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-	}
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+		[self.todos removeObjectAtIndex:indexPath.row];
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}];
+	
+	UITableViewRowAction *done = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@" Done " handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+		Todo *todoItem = self.todos[indexPath.row];
+
+		todoItem.completed = !todoItem.completed;
+		
+		self.todos[indexPath.row] = todoItem;
+		
+		[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+	}];
+	
+	done.backgroundColor = [UIColor blueColor];
+	
+	return @[delete, done];
 }
 
+- (IBAction)crossItOff:(UISwipeGestureRecognizer *)sender {
+	
+}
 
 @end
