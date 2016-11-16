@@ -10,8 +10,6 @@
 
 @interface CustomTableViewCell ()
 
-@property Todo *todoItem;
-
 @end
 
 
@@ -37,7 +35,7 @@
 		NSMutableAttributedString *attributeDescription = [[NSMutableAttributedString alloc] initWithString:self.todoItem.todoDescription];
 		[attributeDescription addAttribute:NSStrikethroughStyleAttributeName value:@2 range:NSMakeRange(0, [attributeDescription length])];
 		
-		NSMutableAttributedString *attributePriority = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"%ld", self.todoItem.priority]];
+		NSMutableAttributedString *attributePriority = [[NSMutableAttributedString alloc] initWithString: self.todoItem.priority];
 		[attributePriority addAttribute:NSStrikethroughStyleAttributeName value:@2 range:NSMakeRange(0, [attributePriority length])];
 		
 		self.labelName.attributedText = attributeName;
@@ -47,7 +45,7 @@
 	else{
 		self.labelName.text = self.todoItem.title;
 		self.labelDescription.text = self.todoItem.todoDescription;
-		self.labelPriority.text = [NSString stringWithFormat:@"%ld", self.todoItem.priority];
+		self.labelPriority.text = self.todoItem.priority;
 	}
 	
 }

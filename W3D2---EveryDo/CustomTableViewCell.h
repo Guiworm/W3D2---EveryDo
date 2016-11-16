@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UILabel *labelDescription;
 @property (weak, nonatomic) IBOutlet UILabel *labelPriority;
+@property Todo *todoItem;
 
 -(void)configureCell: (Todo *)todo;
 

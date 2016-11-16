@@ -30,10 +30,10 @@
 	
 	self.todos = [NSMutableArray new];
 	
-	Todo *new = [[Todo alloc]initWithTitle:@"thing1" andTodoDescription:@"new thing description 1" andPriority:1];
-	Todo *new2 = [[Todo alloc]initWithTitle:@"thing2" andTodoDescription:@"new thing description 2" andPriority:2];
-	Todo *new3 = [[Todo alloc]initWithTitle:@"thing3" andTodoDescription:@"new thing description 3" andPriority:3];
-	Todo *new4 = [[Todo alloc]initWithTitle:@"thing4" andTodoDescription:@"new thing description 4" andPriority:1];
+	Todo *new = [[Todo alloc]initWithTitle:@"thing1" andTodoDescription:@"new thing description 1" andPriority:@"!!!"];
+	Todo *new2 = [[Todo alloc]initWithTitle:@"thing2" andTodoDescription:@"new thing description 2" andPriority:@"!!"];
+	Todo *new3 = [[Todo alloc]initWithTitle:@"thing3" andTodoDescription:@"new thing description 3" andPriority:@"!"];
+	Todo *new4 = [[Todo alloc]initWithTitle:@"thing4" andTodoDescription:@"new thing description 4" andPriority:@"!!"];
 	
 	new. completed = YES;
 	new2.completed = YES;
@@ -133,7 +133,12 @@
 }
 
 - (IBAction)crossItOff:(UISwipeGestureRecognizer *)sender {
-	
+	CGPoint point = [sender locationInView:self.tableView];
+	NSIndexPath *swipePath = [self.tableView indexPathForRowAtPoint:point];
+	CustomTableViewCell *swipedCell = [self.tableView cellForRowAtIndexPath:swipePath];
+	swipedCell.todoItem.completed = !swipedCell.todoItem.completed;
+	[self.tableView reloadRowsAtIndexPaths:@[swipePath] withRowAnimation:UITableViewRowAnimationRight];
+
 }
 
 @end

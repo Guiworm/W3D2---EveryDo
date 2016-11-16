@@ -36,8 +36,7 @@
 		Todo *newTodo = [Todo new];
 		newTodo.title = self.titleLabel.text;
 		newTodo.todoDescription = self.descriptionLabel.text;
-		newTodo.priority = self.priority.tag;
-
+		newTodo.priority = [self.priority titleForSegmentAtIndex:self.priority.selectedSegmentIndex];
 		
 		[self.delegate makeNewTodo:newTodo];
 		[self.navigationController popToRootViewControllerAnimated:YES];

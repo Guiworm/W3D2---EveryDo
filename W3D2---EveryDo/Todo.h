@@ -12,10 +12,10 @@
 
 @property NSString *title;
 @property NSString *todoDescription;
-@property NSInteger priority;
+@property NSString *priority;
 @property BOOL completed;
 
 
-- (instancetype)initWithTitle:(NSString *)title andTodoDescription:(NSString *)todoDescription andPriority:(NSInteger)priority;
+- (instancetype)initWithTitle:(NSString *)title andTodoDescription:(NSString *)todoDescription andPriority:(NSString *)priority;
 
 @end
