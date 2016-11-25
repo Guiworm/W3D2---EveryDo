@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Todo.h"
 #import "CreateTodoViewController.h"
-@class DetailViewController;
+#import "DataManager.h"
 
-@interface MasterViewController : UITableViewController <TodoDelegate>
+@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
+@property (strong, nonatomic) NSFetchedResultsController<TodoItem *> *fetchedResultsController;
 
 @end
 

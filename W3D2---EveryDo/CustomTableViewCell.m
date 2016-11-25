@@ -15,39 +15,35 @@
 
 @implementation CustomTableViewCell
 
+//-(void)configureCell: (TodoItem *)todo{
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
-}
--(void)configureCell: (Todo *)todo{
-	self.todoItem = todo;
+//}
+
+- (void)configureCellwithEvent:(TodoItem *)todo {
 	
-	if(self.todoItem.completed){
-		NSMutableAttributedString *attributeName = [[NSMutableAttributedString alloc] initWithString:self.todoItem.title];
+	if(todo.completed){
+		NSMutableAttributedString *attributeName = [[NSMutableAttributedString alloc] initWithString:todo.title];
 		[attributeName addAttribute:NSStrikethroughStyleAttributeName value:@2 range:NSMakeRange(0, [attributeName length])];
-		
-		NSMutableAttributedString *attributeDescription = [[NSMutableAttributedString alloc] initWithString:self.todoItem.todoDescription];
+
+		NSMutableAttributedString *attributeDescription = [[NSMutableAttributedString alloc] initWithString:todo.description];
 		[attributeDescription addAttribute:NSStrikethroughStyleAttributeName value:@2 range:NSMakeRange(0, [attributeDescription length])];
-		
-		NSMutableAttributedString *attributePriority = [[NSMutableAttributedString alloc] initWithString: self.todoItem.priority];
+
+		NSMutableAttributedString *attributePriority = [[NSMutableAttributedString alloc] initWithString: todo.priority];
 		[attributePriority addAttribute:NSStrikethroughStyleAttributeName value:@2 range:NSMakeRange(0, [attributePriority length])];
-		
+
 		self.labelName.attributedText = attributeName;
 		self.labelDescription.attributedText = attributeDescription;
 		self.labelPriority.attributedText = attributePriority;
 	}
 	else{
-		self.labelName.text = self.todoItem.title;
-		self.labelDescription.text = self.todoItem.todoDescription;
-		self.labelPriority.text = self.todoItem.priority;
+		self.labelName.text = todo.title;
+		self.labelDescription.text = todo.todoDescription;
+		self.labelPriority.text = todo.priority;
 	}
 	
+	
 }
+
 
 @end

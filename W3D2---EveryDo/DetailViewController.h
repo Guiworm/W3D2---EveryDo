@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EveryDo+CoreDataModel.h"
+#import "DataManager.h"
 
 @interface DetailViewController : UIViewController
 

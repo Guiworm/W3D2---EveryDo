@@ -186,13 +186,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Todo Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVO-jU-0oO">
-                                <rect key="frame" x="145" y="134" width="85.5" height="30"/>
+                                <rect key="frame" x="145" y="90" width="85.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="weU-as-CYV">
-                                <rect key="frame" x="37.5" y="253" width="300" height="400"/>
+                                <rect key="frame" x="37.5" y="209" width="300" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="VLU-FT-Qg3"/>
                                     <constraint firstAttribute="height" constant="400" id="hHt-hO-dc2"/>
@@ -201,13 +201,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d9-CQ-zeA">
-                                <rect key="frame" x="159.5" y="184" width="55" height="21"/>
+                                <rect key="frame" x="159.5" y="140" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="69r-oS-BcU">
-                                <rect key="frame" x="133.5" y="210" width="107" height="29"/>
+                                <rect key="frame" x="133.5" y="166" width="107" height="29"/>
                                 <segments>
                                     <segment title=""/>
                                     <segment title="!"/>

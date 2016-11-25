@@ -10,6 +10,7 @@
 
 @interface CreateTodoViewController ()
 
+@property (nonatomic) NSManagedObjectContext *context;
 
 @end
 
@@ -19,28 +20,26 @@
     [super viewDidLoad];
 	UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveIt:)];
 	self.navigationItem.rightBarButtonItem = saveButton;
-
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-//
-//*titleLabel;
-//@property (weak, nonatomic) IBOutlet UISegmentedControl *priority;
-//@property (weak, nonatomic) IBOutlet UITextField *descriptionLabel;
-
--(void)saveIt:(Todo *)todo{
-	if([self.delegate respondsToSelector:@selector(makeNewTodo:)]){
-		Todo *newTodo = [Todo new];
-		newTodo.title = self.titleLabel.text;
-		newTodo.todoDescription = self.descriptionLabel.text;
-		newTodo.priority = [self.priority titleForSegmentAtIndex:self.priority.selectedSegmentIndex];
-		
-		[self.delegate makeNewTodo:newTodo];
-		[self.navigationController popToRootViewControllerAnimated:YES];
-	}
+-(void)saveIt:(TodoItem *)todo{
+	//Get Context for Core Data
+	self.context = [DataManager sharedInstance].persistentContainer.viewContext;
+	
+	//Create a new item
+	TodoItem *newObject = [NSEntityDescription insertNewObjectForEntityForName:@"TodoItem"
+														inManagedObjectContext:self.context];
+	
+	//Set its details
+	newObject.title = self.titleLabel.text;
+	newObject.todoDescription = self.descriptionLabel.text;
+	newObject.priority = [self.priority titleForSegmentAtIndex:self.priority.selectedSegmentIndex];
+	
+	//save the new item
+	[[DataManager sharedInstance] saveContext];
+	
+	[self.navigationController popToRootViewControllerAnimated:YES];
+	
 }
 
 

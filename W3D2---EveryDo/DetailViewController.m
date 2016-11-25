@@ -7,25 +7,23 @@
 //
 
 #import "DetailViewController.h"
-#import "Todo.h"
 
 @interface DetailViewController ()
-
 @end
+
 
 @implementation DetailViewController
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(Todo*)newDetailItem {
+- (void)setDetailItem:(TodoItem*)newDetailItem {
 	if (_detailItem != newDetailItem) {
 	    _detailItem = newDetailItem;
 	        
-	    // Update the view.
+	    // Update the view
 	    [self configureView];
 	}
 }
-
 
 - (void)configureView {
 	// Update the user interface for the detail item.

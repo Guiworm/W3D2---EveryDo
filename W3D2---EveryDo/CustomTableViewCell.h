@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Todo.h"
+#import "EveryDo+CoreDataModel.h"
+#import "DataManager.h"
 
 @interface CustomTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UILabel *labelDescription;
 @property (weak, nonatomic) IBOutlet UILabel *labelPriority;
-@property Todo *todoItem;
+@property TodoItem *todoItem;
 
--(void)configureCell: (Todo *)todo;
+//- (void)configureCell: (TodoItem *)todo;
+- (void)configureCellwithEvent:(TodoItem *)todo;
+
+
 
 @end

@@ -14,9 +14,10 @@
 		A05570461DDB67C1003476C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05570441DDB67C1003476C3 /* Main.storyboard */; };
 		A05570481DDB67C1003476C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05570471DDB67C1003476C3 /* Assets.xcassets */; };
 		A055704B1DDB67C1003476C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05570491DDB67C1003476C3 /* LaunchScreen.storyboard */; };
-		A05570541DDB6B20003476C3 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = A05570531DDB6B20003476C3 /* Todo.m */; };
 		A05570571DDB7412003476C3 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A05570561DDB7412003476C3 /* CustomTableViewCell.m */; };
 		A055705D1DDBC882003476C3 /* CreateTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A055705C1DDBC882003476C3 /* CreateTodoViewController.m */; };
+		A0D2601C1DE614DD00E45F6D /* EveryDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0D2601A1DE614DD00E45F6D /* EveryDo.xcdatamodeld */; };
+		A0D2601F1DE635B300E45F6D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D2601E1DE635B300E45F6D /* DataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +33,13 @@
 		A05570471DDB67C1003476C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A055704A1DDB67C1003476C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A055704C1DDB67C1003476C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A05570521DDB6B20003476C3 /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
-		A05570531DDB6B20003476C3 /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 		A05570551DDB7412003476C3 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		A05570561DDB7412003476C3 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		A055705B1DDBC882003476C3 /* CreateTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTodoViewController.h; sourceTree = "<group>"; };
 		A055705C1DDBC882003476C3 /* CreateTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTodoViewController.m; sourceTree = "<group>"; };
+		A0D2601B1DE614DD00E45F6D /* EveryDo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EveryDo.xcdatamodel; sourceTree = "<group>"; };
+		A0D2601D1DE635B300E45F6D /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		A0D2601E1DE635B300E45F6D /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +81,14 @@
 				A05570441DDB67C1003476C3 /* Main.storyboard */,
 				A055705B1DDBC882003476C3 /* CreateTodoViewController.h */,
 				A055705C1DDBC882003476C3 /* CreateTodoViewController.m */,
+				A0D2601D1DE635B300E45F6D /* DataManager.h */,
+				A0D2601E1DE635B300E45F6D /* DataManager.m */,
 				A05570551DDB7412003476C3 /* CustomTableViewCell.h */,
 				A05570561DDB7412003476C3 /* CustomTableViewCell.m */,
-				A05570521DDB6B20003476C3 /* Todo.h */,
-				A05570531DDB6B20003476C3 /* Todo.m */,
 				A05570471DDB67C1003476C3 /* Assets.xcassets */,
 				A05570491DDB67C1003476C3 /* LaunchScreen.storyboard */,
 				A055704C1DDB67C1003476C3 /* Info.plist */,
+				A0D2601A1DE614DD00E45F6D /* EveryDo.xcdatamodeld */,
 				A05570381DDB67C1003476C3 /* Supporting Files */,
 			);
 			path = "W3D2---EveryDo";
@@ -130,6 +133,7 @@
 				TargetAttributes = {
 					A05570341DDB67C1003476C3 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = A337N9L862;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -170,12 +174,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A05570541DDB6B20003476C3 /* Todo.m in Sources */,
 				A055705D1DDBC882003476C3 /* CreateTodoViewController.m in Sources */,
+				A0D2601C1DE614DD00E45F6D /* EveryDo.xcdatamodeld in Sources */,
 				A055703D1DDB67C1003476C3 /* AppDelegate.m in Sources */,
 				A05570571DDB7412003476C3 /* CustomTableViewCell.m in Sources */,
 				A05570401DDB67C1003476C3 /* MasterViewController.m in Sources */,
 				A055703A1DDB67C1003476C3 /* main.m in Sources */,
+				A0D2601F1DE635B300E45F6D /* DataManager.m in Sources */,
 				A05570431DDB67C1003476C3 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +299,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A337N9L862;
 				INFOPLIST_FILE = "W3D2---EveryDo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DM.W3D2---EveryDo";
@@ -306,7 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A337N9L862;
 				INFOPLIST_FILE = "W3D2---EveryDo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "DM.W3D2---EveryDo";
@@ -336,6 +341,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A0D2601A1DE614DD00E45F6D /* EveryDo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A0D2601B1DE614DD00E45F6D /* EveryDo.xcdatamodel */,
+			);
+			currentVersion = A0D2601B1DE614DD00E45F6D /* EveryDo.xcdatamodel */;
+			path = EveryDo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A055702D1DDB67C1003476C3 /* Project object */;
 }
